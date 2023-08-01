@@ -10,14 +10,14 @@ const PaypalCheckoutButton = (props) => {
   const ConversionRate = 1 / 23000;
   const bill = props.items;
   console.log(bill);
-  const usdValue = parseFloat(cartItems.price) * ConversionRate;
+  let usdValue = parseFloat(cartItems.price) * ConversionRate;
+  console.log(usdValue);
   const handleApprove = async () => {
     setPayFor(true);
     const token = sessionStorage.getItem("jwtToken");
     const apiUrl = process.env.REACT_APP_API_URL;
     let billApprove = props.items;
     billApprove.payment = "PayPal";
-
     const res = await fetch(apiUrl + "customer/create-bill", {
       method: "POST",
       headers: {
@@ -46,7 +46,7 @@ const PaypalCheckoutButton = (props) => {
 
   const product = {
     description: "abc",
-    price: 100,
+    price: usdValue.toFixed(2),
   };
   return (
     <div

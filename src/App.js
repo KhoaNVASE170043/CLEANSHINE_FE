@@ -18,7 +18,7 @@ import ElectronicCleaningPage from "./pages/ElectronicCleaningPage";
 import EmployeePage, {
   employeePageLoader,
 } from "./pages/Employee/EmployeePage";
-import AdminHome from "./pages/Admin/AdminHome";
+import AdminHome, { businessInWeek } from "./pages/Admin/AdminHome";
 import EditCustomer, { customerLoader } from "./pages/Admin/EditCustomer";
 import OrderService, { orderLoader } from "./pages/Admin/OrderService";
 import EditEmployee, { employeeLoader } from "./pages/Admin/EditEmployee";
@@ -93,7 +93,7 @@ const router = createBrowserRouter([
     path: "/admin",
     element: <AdminLayout />,
     children: [
-      { index: true, element: <AdminHome /> },
+      { index: true, element: <AdminHome />, loader: businessInWeek },
       {
         path: "edit-customer",
         element: <EditCustomer />,

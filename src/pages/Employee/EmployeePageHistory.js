@@ -13,6 +13,7 @@ import {
 import useDateTranslate from "../../components/DateTranslate";
 const EmployeePage = () => {
   const data = useLoaderData();
+  console.log(data);
   const { translateWeekdays } = useDateTranslate();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -71,15 +72,19 @@ const EmployeePage = () => {
                     role="checkbox"
                     tabIndex={-1}
                   >
-                    <TableCell align="left">{bill.business.name}</TableCell>
-                    <TableCell align="left">{bill.business.type}</TableCell>
-                    <TableCell align="left">{bill.hour}</TableCell>
                     <TableCell align="left">
-                      {translateWeekdays(bill.day)}, {bill.date}/{bill.month}
+                      {bill.serviceDetail.service.name}
                     </TableCell>
+                    <TableCell align="left">
+                      {bill.serviceDetail.name}
+                    </TableCell>
+                    <TableCell align="left">
+                      {bill.timeStart} - {bill.timeEnd}
+                    </TableCell>
+                    <TableCell align="left">{bill.dateImplement}</TableCell>
                     <TableCell align="left">{bill.customer.phone}</TableCell>
                     <TableCell align="left">
-                      {bill.total.toLocaleString()} VNĐ
+                      {bill.serviceDetail.price.toLocaleString()} VNĐ
                     </TableCell>
                   </TableRow>
                 ))}
