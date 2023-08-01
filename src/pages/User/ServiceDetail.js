@@ -86,7 +86,9 @@ const ServiceDetail = () => {
     <>
       <Breadcrumbs aria-label="breadcrumb" separator="›" sx={{ mb: 3 }}>
         <Typography>Dịch vụ</Typography>
-        <Typography color="text.primary">Giúp việc theo giờ</Typography>
+        {data[0] && (
+          <Typography color="text.primary">{data[0].service.name}</Typography>
+        )}
       </Breadcrumbs>
       <Box
         component="div"

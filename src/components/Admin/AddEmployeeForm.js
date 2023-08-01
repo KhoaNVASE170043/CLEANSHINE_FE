@@ -127,7 +127,7 @@ const AddEmployeeForm = (props) => {
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="exampleModalLabel">
-              Thêm nhân viên tòa {props.building}
+              Thêm nhân viên
             </h1>
 
             <button

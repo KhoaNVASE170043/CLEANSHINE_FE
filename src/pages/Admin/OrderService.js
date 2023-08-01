@@ -152,18 +152,19 @@ const OrderService = () => {
 
                   <TableCell align="left">{bill.billStatus}</TableCell>
                   <TableCell align="left">
-                    {bill.billStatus === "STAFF_RECEIVED" && (
-                      <Button
-                        onClick={() => moneyConfirm(bill.id)}
-                        style={{
-                          fontSize: "12px",
-                          border: "1px solid #1976d2",
-                          textAlign: "center",
-                        }}
-                      >
-                        Xác nhận nhận tiền từ nhân viên
-                      </Button>
-                    )}
+                    {bill.billStatus === "STAFF_RECEIVED" &&
+                      bill.payment !== "PAYPAL" && (
+                        <Button
+                          onClick={() => moneyConfirm(bill.id)}
+                          style={{
+                            fontSize: "12px",
+                            border: "1px solid #1976d2",
+                            textAlign: "center",
+                          }}
+                        >
+                          Xác nhận nhận tiền từ nhân viên
+                        </Button>
+                      )}
                   </TableCell>
                 </TableRow>
               ))}

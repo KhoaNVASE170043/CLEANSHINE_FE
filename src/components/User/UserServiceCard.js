@@ -24,7 +24,7 @@ const UserServiceCard = (props) => {
     }
   };
   return (
-    <div className="col-lg-3 col-sm-12 py-3" onClick={clickHandler}>
+    <div className="col-lg-3 col-sm-12 py-3 my-3" onClick={clickHandler}>
       <Card
         sx={{
           height: "100%",

@@ -4,11 +4,13 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 const PaypalCheckoutButton = (props) => {
   const nav = useNavigate();
+  const cartItems = JSON.parse(sessionStorage.getItem("cart"));
   const [payFor, setPayFor] = useState(false);
   const [error, setError] = useState(null);
   const ConversionRate = 1 / 23000;
   const bill = props.items;
-  const usdValue = parseFloat(bill.total) * ConversionRate;
+  console.log(bill);
+  const usdValue = parseFloat(cartItems.price) * ConversionRate;
   const handleApprove = async () => {
     setPayFor(true);
     const token = sessionStorage.getItem("jwtToken");
@@ -43,8 +45,8 @@ const PaypalCheckoutButton = (props) => {
   };
 
   const product = {
-    description: bill.businessName,
-    price: usdValue.toFixed(2),
+    description: "abc",
+    price: 100,
   };
   return (
     <div

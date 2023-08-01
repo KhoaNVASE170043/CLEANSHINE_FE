@@ -137,6 +137,11 @@ export default function AdminNavigation() {
       icon: "/assets/images/services.svg",
       link: "edit-service",
     },
+    {
+      text: "Chi tiết dịch vụ",
+      icon: "/assets/images/services.svg",
+      link: "service-detail",
+    },
   ];
 
   const { logout } = useLogout();

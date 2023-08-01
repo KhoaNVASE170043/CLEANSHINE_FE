@@ -37,6 +37,7 @@ import ActionRecord, { billLoader } from "./pages/User/ActionRecord";
 import AcceptedOrderPage, {
   acceptedLoader,
 } from "./pages/Employee/AcceptedOrderPage";
+import ServiceType, { serviceDetailLoader } from "./pages/Admin/ServiceType";
 
 const router = createBrowserRouter([
   {
@@ -73,17 +74,17 @@ const router = createBrowserRouter([
     element: <UserPageLayout />,
     children: [
       { index: true, element: <HomeService />, loader: services },
-      {
-        path: "history",
-        element: <UserHistory />,
-        loader: historyLoader,
-      },
+      { path: "history", element: <UserHistory />, loader: historyLoader },
       { path: "action-record", element: <ActionRecord />, loader: billLoader },
       { path: "order", element: <OrderCheckout />, loader: customerInfoLoader },
-      { path: "service-detail", element: <ServiceDetail /> },
       {
         path: "account-infor",
         element: <AccountInfor />,
+        loader: customerInfoLoader,
+      },
+      {
+        path: "service-detail",
+        element: <ServiceDetail />,
         loader: customerInfoLoader,
       },
     ],
@@ -97,45 +98,26 @@ const router = createBrowserRouter([
         path: "edit-customer",
         element: <EditCustomer />,
         loader: customerLoader,
-        children: [
-          {
-            path: ":serviceId",
-            element: <OrderService />,
-          },
-        ],
       },
       {
         path: "edit-employee",
         element: <EditEmployee />,
         loader: employeeLoader,
-        children: [
-          {
-            path: ":serviceId",
-            element: <OrderService />,
-          },
-        ],
       },
       {
         path: "edit-service",
         element: <EditService />,
         loader: serviceLoader,
-        children: [
-          {
-            path: ":serviceId",
-            element: <OrderService />,
-          },
-        ],
       },
       {
         path: "order-service",
         element: <OrderService />,
         loader: orderLoader,
-        children: [
-          {
-            path: ":serviceId",
-            element: <OrderService />,
-          },
-        ],
+      },
+      {
+        path: "service-detail",
+        element: <ServiceType />,
+        loader: serviceDetailLoader,
       },
     ],
   },
