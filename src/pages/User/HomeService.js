@@ -21,7 +21,7 @@ const HomeService = () => {
       <div className="container">
         <div className="row">
           {data.map((ser) => (
-            <UserServiceCard img={ser.linkIcon} title={ser.name} id={ser.id} />
+            <UserServiceCard img={ser.linkIcon} title={ser.name} id={ser.id}/>
           ))}
         </div>
       </div>

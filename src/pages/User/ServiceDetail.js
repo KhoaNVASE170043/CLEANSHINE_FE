@@ -107,53 +107,73 @@ const ServiceDetail = () => {
             width: "50%",
           }}
         >
-          <div style={{ marginLeft: "100px" }}>
-            <TextField
-              label="Chọn dịch vụ"
-              select
-              value={selectedServiceId}
-              onChange={handleServiceChange}
+          <Box style={{ display: "flex", justifyContent: "center" }}>
+            <Grid
+              container
+              spacing={2}
+              alignItems="center"
+              display="inline-flex"
+              justifyContent="center"
             >
-              {serviceDetail.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
+              <Grid item xs={5.5}>
+                <TextField
+                  label="Chọn dịch vụ"
+                  select
+                  value={selectedServiceId}
+                  onChange={handleServiceChange}
+                >
+                  {serviceDetail.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                disablePast
-                label="Chọn ngày"
-                format="DD/MM/YYYY"
-                value={selectedDate}
-                onChange={(date) => setSelectedDate(date)}
-              />
+              <Grid item  >
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    disablePast
+                    label="Chọn ngày"
+                    format="DD/MM/YYYY"
+                    value={selectedDate}
+                    onChange={(date) => setSelectedDate(date)}
+                  />
+                </LocalizationProvider>
+              </Grid>
 
-              <TimePicker
-                value={selectedTimeStart}
-                onChange={(time) => setSelectedTimeStart(time)}
-                label="Chọn giờ bắt đầu"
-                format="HH:mm"
-                ampm={false}
-                minTime={dayjs().set("hour", 8)}
-                maxTime={dayjs().set("hour", 20)}
-              />
+              <Grid item xs={5.5}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimePicker
+                    value={selectedTimeStart}
+                    onChange={(time) => setSelectedTimeStart(time)}
+                    label="Chọn giờ bắt đầu"
+                    format="HH:mm"
+                    ampm={false}
+                    minTime={dayjs().set("hour", 8)}
+                    maxTime={dayjs().set("hour", 20)}
+                  />
+                </LocalizationProvider>
+              </Grid>
 
-              <TimePicker
-                value={selectedTimeEnd}
-                onChange={(time) => setSelectedTimeEnd(time)}
-                label="Chọn giờ kết thúc"
-                format="HH:mm"
-                ampm={false}
-                minTime={dayjs().set("hour", 8)}
-                maxTime={dayjs().set("hour", 20)}
-              />
-            </LocalizationProvider>
-          </div>
+              <Grid item >
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimePicker
+                    value={selectedTimeEnd}
+                    onChange={(time) => setSelectedTimeEnd(time)}
+                    label="Chọn giờ kết thúc"
+                    format="HH:mm"
+                    ampm={false}
+                    minTime={dayjs().set("hour", 8)}
+                    maxTime={dayjs().set("hour", 20)}
+                  />
+                </LocalizationProvider>
+              </Grid>
+            </Grid>
+          </Box>
 
           <div className="row justify-content-center mt-4">
-            <div className="col-10">
+            <div className="col-10" style={{padding: "0px", width: "82%", marginTop: "4%"}}>
               <textarea
                 class="form-control"
                 placeholder="Nếu bạn có ghi chú, hãy ghi lại để chúng tôi biết nhé ..."
