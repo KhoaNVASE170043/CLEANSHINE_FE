@@ -131,7 +131,7 @@ const EditCustomer = () => {
                 <TableCell align="left">{customer.roomNumber}</TableCell>
                 <TableCell align="left">{customer.phone}</TableCell>
                 <TableCell align="left" style={{ padding: 0 }}>
-                  <div className="col-md-12 offset-md-3">
+                  <div className="col-md-12 offset-md-2">
                     <img
                       src="/assets/images/trash.svg"
                       alt="Trash"

@@ -107,6 +107,7 @@ const ServiceType = () => {
           overflow: "hidden",
           justifyContent: "center",
           display: "flex-end",
+          margin: "10px 0 5vh 0",
         }}
       >
         <Table>

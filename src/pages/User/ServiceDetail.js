@@ -153,7 +153,7 @@ const ServiceDetail = () => {
           </div>
 
           <div className="row justify-content-center mt-4">
-            <div className="col-10">
+            <div className="col-9">
               <textarea
                 class="form-control"
                 placeholder="Nếu bạn có ghi chú, hãy ghi lại để chúng tôi biết nhé ..."

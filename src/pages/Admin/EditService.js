@@ -94,7 +94,7 @@ const EditService = () => {
     { id: "detail", label: "Link icon", minWidth: 170 },
     { id: "type", label: "Trạng thái", minWidth: 170 },
     { id: "edit", label: "Chỉnh sửa", minWidth: 170 },
-    { id: "unable", label: "Action", minWidth: 170 },
+    { id: "unable", label: "Trạng thái", minWidth: 170 },
   ];
   return (
     <>
@@ -108,6 +108,7 @@ const EditService = () => {
           overflow: "hidden",
           justifyContent: "center",
           display: "flex-end",
+          marginTop: "10px",
         }}
       >
         <Table>
@@ -132,7 +133,9 @@ const EditService = () => {
                 >
                   <TableCell align="left">{service.id}</TableCell>
                   <TableCell align="left">{service.name}</TableCell>
-                  <TableCell align="left">{service.linkIcon}</TableCell>
+                  <TableCell align="left" sx={{maxWidth: "18vw", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
+                    <a href={service.linkIcon} target="_blank">{service.linkIcon}</a>
+                  </TableCell>
                   <TableCell align="left">
                     {service.status ? "ON" : "OFF"}
                   </TableCell>
