@@ -27,22 +27,25 @@ const UserServiceCard = (props) => {
     <div className="col-lg-3 col-sm-12 py-3 my-3" onClick={clickHandler}>
       <Card
         sx={{
+          width: "80%",
           height: "100%",
           justifyContent: "center",
           alignItems: "center",
           display: "flex",
-          borderRadius: "30%",
+          borderRadius: "5%",
         }}
       >
-        <CardMedia component="img" image={props.img} />
+        <CardMedia component="img" image={props.img} sx={{ opacity: "70", width: "130px !important"}} />
       </Card>
-
+      <div className="container" style={{marginTop: "4%", display: "flex", justifyContent: "flex-start"}}> 
       <Title
         title={props.title}
         color="#000000"
-        fontSize="20px"
-        fontWeitgh="600"
+        fontSize="18px"
+        fontWeight="lighter"
       />
+      </div>
+
     </div>
   );
 };
