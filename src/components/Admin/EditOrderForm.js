@@ -54,13 +54,14 @@ const EditOrderForm = (props) => {
       },
       body: JSON.stringify(newOrder),
     });
-    if (res.ok) {
+    if (res.ok && employeeId !== "") {
       Swal.fire({
         title: "Đăng ký nhân viên thành công",
         icon: "success",
         confirmButtonText: "Close",
       });
     }
+    setEmployeeId("");
     nav("/admin/order-service");
   };
   return (

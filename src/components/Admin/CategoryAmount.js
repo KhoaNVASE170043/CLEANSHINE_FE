@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const CategoryAmount = () => {
 
-  const [amount, setAmount] = useState([]);
-  console.log(amount);
+  const [amount, setAmount] = useState([{}]);
 
   useEffect(() => {
     const token = sessionStorage.getItem("jwtToken");
@@ -21,7 +20,11 @@ const CategoryAmount = () => {
         throw new Error("Failed to fetch data");
       }
       const data = await res.json();
-      setAmount(data);
+      let tmp = [];
+      for (let i = 0; i < 4; i++) {
+        tmp.push(data[i]);
+      }
+      setAmount(tmp);
     };
     fetchAmount();
   }, []);

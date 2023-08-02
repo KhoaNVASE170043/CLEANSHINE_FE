@@ -164,7 +164,7 @@ const ServiceDetail = () => {
                     label="Chọn giờ kết thúc"
                     format="HH:mm"
                     ampm={false}
-                    minTime={dayjs().set("hour", 8)}
+                    minTime={dayjs().set("hour", selectedTimeStart ? selectedTimeStart.$H + 1 : 9)}
                     maxTime={dayjs().set("hour", 20)}
                   />
                 </LocalizationProvider>
