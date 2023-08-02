@@ -60,12 +60,7 @@ const OrderCheckout = () => {
         </Grid>
         <Container>
           <div className="line"></div>
-
-          <Grid
-            style={{
-              marginTop: "20px",
-            }}
-          >
+          <Grid>
             <Card>
               <Grid container>
                 <MdLocationOn fontSize={25} />
