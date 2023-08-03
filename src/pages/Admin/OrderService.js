@@ -2,10 +2,7 @@ import "./EditCus.css";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import EditOrderForm from "../../components/Admin/EditOrderForm";
 import React, { useState } from "react";
-import ConfirmPayment from "../../components/Admin/ConfirmPayment";
-import CancelOrder from "../../components/Admin/CancelOrder";
 import {
-  Breadcrumbs,
   Button,
   Paper,
   Table,
@@ -28,7 +25,6 @@ const OrderService = () => {
     setBillId(id);
     setDate(dateImp);
   };
-  console.log(data);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -79,11 +75,21 @@ const OrderService = () => {
     { id: "transaction", label: "Giao dịch", minWidth: 170 },
     { id: "total", label: "Tổng cộng", minWidth: 170 },
     { id: "status", label: "Trạng thái", minWidth: 170 },
-    { id: "status", label: "", minWidth: 170 },
+    { id: "status", label: "Action", minWidth: 170 },
   ];
   return (
     <>
-      <Typography variant="h5" sx={{color: "#397F77", textAlign: "center", fontFamily: "Work Sans", fontWeight: "bold"}}>ĐƠN HÀNG</Typography>
+      <Typography
+        variant="h5"
+        sx={{
+          color: "#397F77",
+          textAlign: "center",
+          fontFamily: "Work Sans",
+          fontWeight: "bold",
+        }}
+      >
+        ĐƠN HÀNG
+      </Typography>
       <Paper
         className="container"
         sx={{
@@ -91,7 +97,7 @@ const OrderService = () => {
           overflow: "hidden",
           justifyContent: "center",
           display: "flex-end",
-          marginTop: "3%"
+          marginTop: "3%",
         }}
       >
         <Table>

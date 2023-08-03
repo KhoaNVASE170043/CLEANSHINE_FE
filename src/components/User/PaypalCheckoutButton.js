@@ -9,9 +9,7 @@ const PaypalCheckoutButton = (props) => {
   const [error, setError] = useState(null);
   const ConversionRate = 1 / 23000;
   const bill = props.items;
-  console.log(bill);
   let usdValue = parseFloat(cartItems.price) * ConversionRate;
-  console.log(usdValue);
   const handleApprove = async () => {
     setPayFor(true);
     const token = sessionStorage.getItem("jwtToken");

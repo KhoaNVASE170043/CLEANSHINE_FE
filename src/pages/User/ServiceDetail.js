@@ -36,7 +36,7 @@ const ServiceDetail = () => {
       label: item.name,
     }));
     setServiceDetail(DETAIL);
-  }, []);
+  }, [data]);
   const handleNoteChange = (event) => {
     setNote(event.target.value);
   };
@@ -56,9 +56,26 @@ const ServiceDetail = () => {
       });
       return;
     }
+    const endTime = new Date(selectedTimeEnd); // Convert to Date object
+    const startTime = new Date(selectedTimeStart); // Convert to Date object
+
+    const timeDifferenceInMilliseconds =
+      endTime.getTime() - startTime.getTime();
+    const timeDifferenceInHours =
+      timeDifferenceInMilliseconds / (1000 * 60 * 60); // Convert milliseconds to hours
+    if (timeDifferenceInHours > 3) {
+      Swal.fire({
+        title: "Chúng tôi chưa hỗ trợ đặt quá 3 tiếng",
+        icon: "error",
+        confirmButtonText: "Close",
+      });
+      return;
+    }
     const currentDate = new Date();
     const isoDate = currentDate.toISOString().split("T")[0];
-    const formattedDate = selectedDate.toISOString().split("T")[0];
+    const nextDay = new Date(selectedDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    const formattedDate = nextDay.toISOString().split("T")[0];
     let serviceObj = serviceList.find((item) => item.id === selectedServiceId);
     let service = {
       name: serviceObj.service.name,
@@ -130,7 +147,7 @@ const ServiceDetail = () => {
                 </TextField>
               </Grid>
 
-              <Grid item  >
+              <Grid item>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     disablePast
@@ -156,7 +173,7 @@ const ServiceDetail = () => {
                 </LocalizationProvider>
               </Grid>
 
-              <Grid item >
+              <Grid item>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <TimePicker
                     value={selectedTimeEnd}
@@ -164,7 +181,10 @@ const ServiceDetail = () => {
                     label="Chọn giờ kết thúc"
                     format="HH:mm"
                     ampm={false}
-                    minTime={dayjs().set("hour", selectedTimeStart ? selectedTimeStart.$H + 1 : 9)}
+                    minTime={dayjs().set(
+                      "hour",
+                      selectedTimeStart ? selectedTimeStart.$H + 1 : 9
+                    )}
                     maxTime={dayjs().set("hour", 20)}
                   />
                 </LocalizationProvider>
@@ -173,7 +193,10 @@ const ServiceDetail = () => {
           </Box>
 
           <div className="row justify-content-center mt-4">
-            <div className="col-10" style={{padding: "0px", width: "82%", marginTop: "4%"}}>
+            <div
+              className="col-10"
+              style={{ padding: "0px", width: "82%", marginTop: "4%" }}
+            >
               <textarea
                 class="form-control"
                 placeholder="Nếu bạn có ghi chú, hãy ghi lại để chúng tôi biết nhé ..."

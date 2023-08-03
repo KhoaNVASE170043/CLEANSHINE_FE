@@ -11,11 +11,11 @@ import {
   TableRow,
 } from "@mui/material";
 import ConfirmComplete from "../../components/Employee/ConfirmComplete";
+import BillNote from "../../components/Employee/BillNote";
 const EmployeePage = () => {
   const data = useLoaderData();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  console.log(data);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -83,7 +83,7 @@ const EmployeePage = () => {
                     <TableCell align="left">{bill.roomName}</TableCell>
                     <TableCell align="left">{bill.payment}</TableCell>
                     <TableCell align="left">
-                      {bill.note ? <button>Xem chi tiết</button> : "Không có"}
+                      {bill.note ? <BillNote note={bill.note} /> : "Không có"}
                     </TableCell>
                     <TableCell align="left">
                       {bill.serviceDetail.price.toLocaleString()} VNĐ

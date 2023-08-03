@@ -15,7 +15,6 @@ import {
 import { useLoaderData } from "react-router-dom";
 const UserHistory = () => {
   const data = useLoaderData();
-  console.log(data);
   const column = [
     { id: "type", label: "Loại", minWidth: 170 },
     { id: "detail", label: "Chi tiết", minWidth: 170 },

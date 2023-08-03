@@ -44,7 +44,6 @@ const SignInForm = () => {
         return;
       }
       const data = await response.json();
-      console.log(data);
       const user = data.user;
       const jwtToken = data.jwtToken;
       sessionStorage.setItem("jwtToken", jwtToken);

@@ -10,11 +10,8 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import useDateTranslate from "../../components/DateTranslate";
 const EmployeePage = () => {
   const data = useLoaderData();
-  console.log(data);
-  const { translateWeekdays } = useDateTranslate();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

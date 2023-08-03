@@ -65,7 +65,6 @@ const EditServiceTypeForm = (props) => {
       });
       return;
     }
-    console.log(DATA);
     const token = sessionStorage.getItem("jwtToken");
     const apiUrl = process.env.REACT_APP_API_URL;
     const res = await fetch(apiUrl + "admin/edit-service-detail", {

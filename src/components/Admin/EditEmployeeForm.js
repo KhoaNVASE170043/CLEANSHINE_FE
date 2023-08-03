@@ -48,7 +48,6 @@ const EditEmployeeForm = (props) => {
       password: password,
       serviceId: work,
     };
-    console.log(employeeInfo);
     const token = sessionStorage.getItem("jwtToken");
     const apiUrl = process.env.REACT_APP_API_URL;
     const res = await fetch(apiUrl + "admin/employees", {
@@ -76,7 +75,10 @@ const EditEmployeeForm = (props) => {
       aria-hidden="true"
     >
       <div className="modal-dialog find-employ">
-        <div className="modal-content find-employ-item" style={{ width: "150%", transform: "translate(-16%, 0)" }}>
+        <div
+          className="modal-content find-employ-item"
+          style={{ width: "150%", transform: "translate(-16%, 0)" }}
+        >
           <div className="modal-header">
             <Typography
               variant="h4"
@@ -144,12 +146,15 @@ const EditEmployeeForm = (props) => {
                 </div>
                 <div className="col-md-6">
                   <div className="form-group" style={{ marginTop: "5%" }}>
-                    <label htmlFor="password" style={{
+                    <label
+                      htmlFor="password"
+                      style={{
                         fontWeight: "bold",
                         marginBottom: "2%",
                         fontFamily: "Montserrat",
                         letterSpacing: "0.05rem",
-                      }}>
+                      }}
+                    >
                       Password (Bỏ trống để giữ nguyên)
                     </label>
                     <input
@@ -184,12 +189,17 @@ const EditEmployeeForm = (props) => {
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group" style={{ marginTop: "5%" }}>
-                    <label htmlFor="phone" style={{
+                    <label
+                      htmlFor="phone"
+                      style={{
                         fontWeight: "bold",
                         marginBottom: "2%",
                         fontFamily: "Montserrat",
                         letterSpacing: "0.05rem",
-                      }}>Công việc</label>
+                      }}
+                    >
+                      Công việc
+                    </label>
                     <select
                       class="form-select"
                       onChange={workTypeHandler}

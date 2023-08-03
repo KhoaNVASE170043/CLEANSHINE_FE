@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./EditCus.css";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import EditEmployeeForm from "../../components/Admin/EditEmployeeForm";
 import AddEmployeeForm from "../../components/Admin/AddEmployeeForm";
 import {
-  Breadcrumbs,
-  Button,
   Paper,
   Table,
   TableBody,
@@ -72,7 +70,17 @@ const EditEmployee = () => {
   ];
   return (
     <>
-      <Typography variant="h5" sx={{color: "#397F77", textAlign: "center", fontFamily: "Work Sans", fontWeight: "bold"}}>NHÂN VIÊN</Typography>
+      <Typography
+        variant="h5"
+        sx={{
+          color: "#397F77",
+          textAlign: "center",
+          fontFamily: "Work Sans",
+          fontWeight: "bold",
+        }}
+      >
+        NHÂN VIÊN
+      </Typography>
       <div className="row">
         <div className="col-12">
           <img

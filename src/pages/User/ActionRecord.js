@@ -64,7 +64,6 @@ const ActionRecord = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  console.log(data);
   return (
     <>
       <Breadcrumbs aria-label="breadcrumb" separator="›">

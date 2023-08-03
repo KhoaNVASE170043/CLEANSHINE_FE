@@ -28,12 +28,11 @@ const EditOrderForm = (props) => {
           throw new Error("Error fetching data");
         }
         const responseData = await res.json();
-        console.log(responseData);
         setData(responseData);
       };
       fetchData();
     }
-  }, [props.serviceId, props.dateImp]);
+  }, [props.billId]);
 
   const handleChooseEmployee = (id) => {
     setEmployeeId(id);
@@ -76,7 +75,10 @@ const EditOrderForm = (props) => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content" style={{ width: "150%", transform: "translate(-16%, 0)" }}>
+          <div
+            className="modal-content"
+            style={{ width: "150%", transform: "translate(-16%, 0)" }}
+          >
             <div className="modal-header">
               <h1 className="modal-title" id="staticBackdropLabel">
                 Danh sách nhân viên

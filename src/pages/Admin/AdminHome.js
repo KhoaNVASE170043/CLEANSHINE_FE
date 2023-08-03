@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import {
   PieChart,
   Pie,
@@ -21,7 +20,15 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Paper, Typography } from "@mui/material";
 import dayjs from "dayjs";
 
-const COLORS = ["#EC6940", "#2B82B4", "#A2D59F", "#F4A761", "#8ED1E6", "#AADEA7", "#EA5B5C"];
+const COLORS = [
+  "#EC6940",
+  "#2B82B4",
+  "#A2D59F",
+  "#F4A761",
+  "#8ED1E6",
+  "#AADEA7",
+  "#EA5B5C",
+];
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -121,17 +128,19 @@ const AdminHome = () => {
   };
 
   const formatDayStart = (dayStart) => {
-    let tmp = dayStart.split("-")
+    let tmp = dayStart.split("-");
     let dayInNum = Number.parseInt(tmp[2]) + 1;
-    return `${tmp[0]}-${tmp[1]}-0${dayInNum}`
-  }
+    return `${tmp[0]}-${tmp[1]}-0${dayInNum}`;
+  };
   const dateToRange = formatDayStart(dayStart.toISOString().split("T")[0]);
-  console.log(dateToRange);
-
   useEffect(() => {
     if (dayStart !== undefined && dayEnd !== undefined) {
-      let formattedStartDate = dayStart.toISOString().split("T")[0];
-      let formattedEndDate = dayEnd.toISOString().split("T")[0];
+      const nextDayStart = new Date(dayStart);
+      nextDayStart.setDate(nextDayStart.getDate() + 1);
+      const nextDayEnd = new Date(dayEnd);
+      nextDayEnd.setDate(nextDayEnd.getDate() + 1);
+      let formattedStartDate = nextDayStart.toISOString().split("T")[0];
+      let formattedEndDate = nextDayEnd.toISOString().split("T")[0];
       let dateReq = {
         dateStart: formattedStartDate,
         dateEnd: formattedEndDate,
@@ -161,7 +170,6 @@ const AdminHome = () => {
           tmp.push(fetchedData[i]);
         }
         setData(tmp);
-        console.log(data);
         tmp = [];
         for (let i = 0; i < 4; i++) {
           tmp.push(fetchedData[i]);
@@ -176,13 +184,11 @@ const AdminHome = () => {
 
   const serviceShortener = (service) => {
     let serviceName = service.split(" ");
-    console.log("split: ", serviceName);
     let formattedService = "";
     for (let i = 0; i < serviceName.length; i++) {
       formattedService =
         formattedService + serviceName[i].split("")[0].toUpperCase();
     }
-    console.log("formatted: ", formattedService);
     return formattedService;
   };
 
@@ -261,8 +267,12 @@ const AdminHome = () => {
               />
             </LocalizationProvider>
           </div>
-          <ResponsiveContainer width="100%" height="100%" style={{ boxShadow: "none" }}>
-            <PieChart width={400} height={400} sx={{border: "none"}} >
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+            style={{ boxShadow: "none" }}
+          >
+            <PieChart width={400} height={400} sx={{ border: "none" }}>
               <Pie
                 activeIndex={activeIndex}
                 activeShape={renderActiveShape}
@@ -295,7 +305,11 @@ const AdminHome = () => {
             justifyContent: "space-between",
           }}
         >
-          <ResponsiveContainer width="80%" height="45%" style={{ border: "none" }}>
+          <ResponsiveContainer
+            width="80%"
+            height="45%"
+            style={{ border: "none" }}
+          >
             <BarChart
               width={500}
               height={300}
@@ -335,7 +349,11 @@ const AdminHome = () => {
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="category" padding={{ left: 25}} tickFormatter={serviceShortener} />
+              <XAxis
+                dataKey="category"
+                padding={{ left: 25 }}
+                tickFormatter={serviceShortener}
+              />
               <YAxis />
               <Tooltip />
               <Line

@@ -12,13 +12,13 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import BillNote from "../../components/Employee/BillNote";
 
 const AcceptedOrderPage = () => {
   const nav = useNavigate();
   const data = useLoaderData();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  console.log(data);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -37,16 +37,15 @@ const AcceptedOrderPage = () => {
       body: JSON.stringify(id),
     });
 
-    if (!res.ok) {
-      throw new Error("Error fetching data");
+    if (res.ok) {
+      Swal.fire({
+        title: "Xác nhận thành công",
+        icon: "success",
+        confirmButtonText: "Close",
+      });
     }
-    Swal.fire({
-      title: "Xác nhận thành công",
-      icon: "success",
-      confirmButtonText: "Close",
-    });
 
-    nav("/employee");
+    nav("/employee/accepted-orders");
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -111,7 +110,7 @@ const AcceptedOrderPage = () => {
                     <TableCell align="left">{bill.roomName}</TableCell>
                     <TableCell align="left">{bill.payment}</TableCell>
                     <TableCell align="left">
-                      {bill.note ? <button>Xem chi tiết</button> : "Không có"}
+                      {bill.note ? <BillNote note={bill.note} /> : "Không có"}
                     </TableCell>
                     <TableCell align="left">
                       {bill.serviceDetail.price.toLocaleString()} VNĐ

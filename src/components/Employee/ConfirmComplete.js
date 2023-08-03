@@ -10,7 +10,6 @@ const ConfirmComplete = (props) => {
     const id = {
       id: props.id,
     };
-    console.log(id);
     const apiUrl = process.env.REACT_APP_API_URL;
     const res = await fetch(apiUrl + "employee/accept-assign", {
       method: "POST",
