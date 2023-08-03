@@ -222,7 +222,7 @@ const AdminHome = () => {
                 format="DD/MM/YYYY"
                 value={dayStart.$d}
                 onChange={(date) => setDayStart(date)}
-                sx={{marginRight: 7, }}
+                sx={{ marginRight: 7, }}
               />
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -254,8 +254,17 @@ const AdminHome = () => {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="col-md-6 flex-column" style={{marginLeft: "3vw"}}>
-          <ResponsiveContainer width="80%" height="50%">
+        <div
+          className="col-md-6 flex-column"
+          style={{
+            marginLeft: "3vw",
+            height: "110%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between"
+          }}
+        >
+          <ResponsiveContainer width="80%" height="45%">
             <BarChart
               width={500}
               height={300}
@@ -277,9 +286,8 @@ const AdminHome = () => {
                 ))}
               </Bar>
             </BarChart>
-
           </ResponsiveContainer>
-          <ResponsiveContainer  width="80%" height="50%">
+          <ResponsiveContainer width="80%" height="45%">
             <LineChart
               width={500}
               height={300}
@@ -292,7 +300,7 @@ const AdminHome = () => {
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="category" tickFormatter={serviceFormatter}/>
+              <XAxis dataKey="category" padding={{ left: 25}} tickFormatter={serviceFormatter} />
               <YAxis />
               <Tooltip />
               <Line type="monotone" dataKey="amount" stroke="#2B82B4" activeDot={{ r: 8 }} />
