@@ -126,7 +126,7 @@ const EditService = () => {
               .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
               .map((service) => (
                 <TableRow
-                  key={service.serviceId}
+                  key={Math.random()}
                   hover
                   role="checkbox"
                   tabIndex={-1}

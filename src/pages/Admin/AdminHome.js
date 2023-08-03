@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import CategoryAmount from "../../components/Admin/CategoryAmount";
-import { PieChart, Pie, Sector, ResponsiveContainer, Cell } from "recharts";
+import { PieChart, Pie, Sector, ResponsiveContainer, Cell, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { Paper, Typography } from "@mui/material";
 
-const COLORS = ["#EC6940", "#2B82B4", "#A2D59F", "#F4A761", "#F4A761"];
+const COLORS = ["#EC6940", "#2B82B4", "#A2D59F", "#F4A761", "#AADEA7"];
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -91,9 +91,15 @@ const renderActiveShape = (props) => {
 const AdminHome = () => {
   const [data, setData] = useState();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [dayStart, setDayStart] = useState();
-  const [dayEnd, setDayEnd] = useState();
+  const [dayStart, setDayStart] = useState(new Date("2023-08-01"));
+  const [dayEnd, setDayEnd] = useState(new Date("2023-08-06"));
   const [processDate, setProcessDate] = useState();
+  const [amount, setAmount] = useState([
+    { category: "Đơn bị hủy", amount: 0 },
+    { category: "Đơn hoàn thành", amount: 0 },
+    { category: "Thu nhập", amount: 0 },
+    { category: "Nhân viên", amount: 0 },
+  ]);
 
   const onPieEnter = (event, index) => {
     setActiveIndex(index);
@@ -124,11 +130,20 @@ const AdminHome = () => {
         body: JSON.stringify(processDate),
       });
       if (!res.ok) {
-        throw new Error("error");
+        // throw new Error("error");
       } else {
         const fetchedData = await res.json();
-        setData(fetchedData);
+        let tmp = [];
+        for (let i = 5; i < fetchedData.length; i++) {
+          tmp.push(fetchedData[i]);
+        }
+        setData(tmp);
         console.log(data);
+        tmp = [];
+        for (let i = 0; i < 4; i++) {
+          tmp.push(fetchedData[i]);
+        }
+        setAmount(tmp);
       }
     }
     if (dayStart !== undefined && dayEnd !== undefined) {
@@ -136,49 +151,153 @@ const AdminHome = () => {
     }
   }, [processDate]);
 
+  const serviceFormatter = (service) => {
+    let serviceName = service.split(" ");
+    console.log("split: ", serviceName);
+    let formattedService = "";
+    for (let i = 0; i < serviceName.length; i++) {
+      formattedService = formattedService + serviceName[i].split("")[0].toUpperCase();
+    }
+    console.log("formatted: ", formattedService)
+    return formattedService;
+  }
+
   return (
     <>
-      {/* <CategoryAmount /> */}
+      <div className="d-flex justify-content-center">
+        <div
+          style={{
+            display: "flex",
+            width: "95%",
+            justifyContent: "space-between",
+            padding: "0 2vw 0 0"
+          }}
+        >
+          {
+            amount && amount.map((item) => {
+              return (
+                <Paper
+                  style={{
+                    display: "flex",
+                    width: "13vw",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    padding: "1vh 2vw 0 2vw",
+                  }}
+                  key={Math.random()}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: "17px",
+                      opacity: "70%",
+                      padding: "0"
+                    }}
+                  >{item.category}</Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "50px",
+                    }}
+                  >{item.amount}</Typography>
+                </Paper>
+              );
+            })
+          }
+        </div>
+      </div>
       <div
         className="container d-flex mt-5"
         style={{ height: "60vh", justifyContent: "space-between" }}
       >
-        {/* <ResponsiveContainer width="45%" height="100%"> */}
-        {/* <PieChart width={400} height={400}>
-          <Pie
-            activeIndex={activeIndex}
-            activeShape={renderActiveShape}
-            data={data}
-            cx="50%"
-            cy="50%"
-            innerRadius={110}
-            outerRadius={140}
-            dataKey="amount"
-            onMouseEnter={onPieEnter}
+        <div className="col-md-6" >
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-around"
+            }}
           >
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-        </PieChart> */}
-        {/* </ResponsiveContainer> */}
-        <div style={{ width: "40%" }}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label="Chọn ngày bắt đầu"
-              format="DD/MM/YYYY"
-              // value={dayStart}
-              onChange={(date) => setDayStart(date)}
-            />
-          </LocalizationProvider>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label="Chọn ngày kết thúc"
-              format="DD/MM/YYYY"
-              // value={dayEnd}
-              onChange={(date) => setDayEnd(date)}
-            />
-          </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                label="Chọn ngày bắt đầu"
+                format="DD/MM/YYYY"
+                value={dayStart.$d}
+                onChange={(date) => setDayStart(date)}
+                sx={{marginRight: 7, }}
+              />
+            </LocalizationProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                label="Chọn ngày kết thúc"
+                format="DD/MM/YYYY"
+                value={dayEnd.$d}
+                onChange={(date) => setDayEnd(date)}
+              />
+            </LocalizationProvider>
+          </div>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart width={400} height={400}>
+              <Pie
+                activeIndex={activeIndex}
+                activeShape={renderActiveShape}
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={110}
+                outerRadius={140}
+                dataKey="amount"
+                onMouseEnter={onPieEnter}
+              >
+                {data && data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="col-md-6 flex-column" style={{marginLeft: "3vw"}}>
+          <ResponsiveContainer width="80%" height="50%">
+            <BarChart
+              width={500}
+              height={300}
+              data={data}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="category" tickFormatter={serviceFormatter} />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="amount" barSize={35}>
+                {data && data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Bar>
+            </BarChart>
+
+          </ResponsiveContainer>
+          <ResponsiveContainer  width="80%" height="50%">
+            <LineChart
+              width={500}
+              height={300}
+              data={data}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="category" tickFormatter={serviceFormatter}/>
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="amount" stroke="#2B82B4" activeDot={{ r: 8 }} />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </>
