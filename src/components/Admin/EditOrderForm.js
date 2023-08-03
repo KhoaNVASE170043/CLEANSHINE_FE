@@ -76,7 +76,7 @@ const EditOrderForm = (props) => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
+          <div className="modal-content" style={{ width: "150%", transform: "translate(-16%, 0)" }}>
             <div className="modal-header">
               <h1 className="modal-title" id="staticBackdropLabel">
                 Danh sách nhân viên
@@ -106,7 +106,7 @@ const EditOrderForm = (props) => {
                       <td>{employee.employeeInfo.email}</td>
                       <td>{employee.service.name}</td>
                       <td>{employee.employeeInfo.phone}</td>
-                      <td>
+                      <td className="d-flex justify-content-center align-items-center">
                         <input
                           type="checkbox"
                           id={employee.id}

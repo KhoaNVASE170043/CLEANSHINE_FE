@@ -76,7 +76,7 @@ const EditEmployeeForm = (props) => {
       aria-hidden="true"
     >
       <div className="modal-dialog find-employ">
-        <div className="modal-content find-employ-item">
+        <div className="modal-content find-employ-item" style={{ width: "150%", transform: "translate(-16%, 0)" }}>
           <div className="modal-header">
             <Typography
               variant="h4"
@@ -99,7 +99,7 @@ const EditEmployeeForm = (props) => {
           </div>
           <div className="modal-body">
             <div className="container">
-              <div className="row">
+              <div className="row d-flex justify-content-start">
                 <div className="col-md-6">
                   <div className="form-group">
                     <label
@@ -143,8 +143,13 @@ const EditEmployeeForm = (props) => {
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="form-group">
-                    <label htmlFor="password" style={{ fontWeight: "bold" }}>
+                  <div className="form-group" style={{ marginTop: "5%" }}>
+                    <label htmlFor="password" style={{
+                        fontWeight: "bold",
+                        marginBottom: "2%",
+                        fontFamily: "Montserrat",
+                        letterSpacing: "0.05rem",
+                      }}>
                       Password (Bỏ trống để giữ nguyên)
                     </label>
                     <input
@@ -155,8 +160,8 @@ const EditEmployeeForm = (props) => {
                     />
                   </div>
                 </div>
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group" style={{ marginTop: "10%" }}>
+                <div className="col-xl-6">
+                  <div className="form-group" style={{ marginTop: "5%" }}>
                     <label
                       htmlFor="phone"
                       style={{
@@ -178,8 +183,13 @@ const EditEmployeeForm = (props) => {
                   </div>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group">
-                    <label htmlFor="phone">Công việc</label>
+                  <div className="form-group" style={{ marginTop: "5%" }}>
+                    <label htmlFor="phone" style={{
+                        fontWeight: "bold",
+                        marginBottom: "2%",
+                        fontFamily: "Montserrat",
+                        letterSpacing: "0.05rem",
+                      }}>Công việc</label>
                     <select
                       class="form-select"
                       onChange={workTypeHandler}

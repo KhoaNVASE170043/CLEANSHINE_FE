@@ -5,8 +5,9 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Paper, Typography } from "@mui/material";
+import dayjs from "dayjs";
 
-const COLORS = ["#EC6940", "#2B82B4", "#A2D59F", "#F4A761", "#AADEA7"];
+const COLORS = ["#EC6940", "#2B82B4", "#A2D59F", "#F4A761", "#8ED1E6", "#AADEA7", "#EA5B5C"];
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -105,6 +106,14 @@ const AdminHome = () => {
     setActiveIndex(index);
   };
 
+  const formatDayStart = (dayStart) => {
+    let tmp = dayStart.split("-")
+    let dayInNum = Number.parseInt(tmp[2]) + 1;
+    return `${tmp[0]}-${tmp[1]}-0${dayInNum}`
+  }
+  const dateToRange = formatDayStart(dayStart.toISOString().split("T")[0]);
+  console.log(dateToRange);
+
   useEffect(() => {
     if (dayStart !== undefined && dayEnd !== undefined) {
       let formattedStartDate = dayStart.toISOString().split("T")[0];
@@ -151,7 +160,7 @@ const AdminHome = () => {
     }
   }, [processDate]);
 
-  const serviceFormatter = (service) => {
+  const serviceShortener = (service) => {
     let serviceName = service.split(" ");
     console.log("split: ", serviceName);
     let formattedService = "";
@@ -231,6 +240,7 @@ const AdminHome = () => {
                 format="DD/MM/YYYY"
                 value={dayEnd.$d}
                 onChange={(date) => setDayEnd(date)}
+                minDate={dayjs(dateToRange)}
               />
             </LocalizationProvider>
           </div>
@@ -277,7 +287,7 @@ const AdminHome = () => {
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="category" tickFormatter={serviceFormatter} />
+              <XAxis dataKey="category" tickFormatter={serviceShortener} />
               <YAxis />
               <Tooltip />
               <Bar dataKey="amount" barSize={35}>
@@ -300,7 +310,7 @@ const AdminHome = () => {
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="category" padding={{ left: 25}} tickFormatter={serviceFormatter} />
+              <XAxis dataKey="category" padding={{ left: 25}} tickFormatter={serviceShortener} />
               <YAxis />
               <Tooltip />
               <Line type="monotone" dataKey="amount" stroke="#2B82B4" activeDot={{ r: 8 }} />
