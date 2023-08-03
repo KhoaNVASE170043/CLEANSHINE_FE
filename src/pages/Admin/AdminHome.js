@@ -211,12 +211,10 @@ const AdminHome = () => {
                   >
                     {item.category}
                   </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "20px",
-                    }}
-                  >
-                    {item.amount}
+                  <Typography sx={{ fontSize: "20px" }}>
+                    {item.category === "Thu nhập"
+                      ? item.amount.toLocaleString() + " VNĐ"
+                      : item.amount}
                   </Typography>
                 </Paper>
               );
@@ -253,8 +251,8 @@ const AdminHome = () => {
               />
             </LocalizationProvider>
           </div>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={400} height={400}>
+          <ResponsiveContainer width="100%" height="100%" style={{ boxShadow: "none" }}>
+            <PieChart width={400} height={400} sx={{border: "none"}} >
               <Pie
                 activeIndex={activeIndex}
                 activeShape={renderActiveShape}
@@ -287,7 +285,7 @@ const AdminHome = () => {
             justifyContent: "space-between",
           }}
         >
-          <ResponsiveContainer width="80%" height="45%">
+          <ResponsiveContainer width="80%" height="45%" style={{ border: "none" }}>
             <BarChart
               width={500}
               height={300}

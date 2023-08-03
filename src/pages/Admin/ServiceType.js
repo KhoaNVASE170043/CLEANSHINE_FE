@@ -97,9 +97,7 @@ const ServiceType = () => {
   };
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb" separator="›" className="mb-3">
-        <Typography color="text.primary">Chi tiết dịch vụ</Typography>
-      </Breadcrumbs>
+      <Typography variant="h5" sx={{color: "#397F77", textAlign: "center", fontFamily: "Work Sans", fontWeight: "bold"}}>CHI TIẾT DỊCH VỤ</Typography>
       <AddServiceTypeForm />
       <Paper
         className="container"
@@ -128,7 +126,7 @@ const ServiceType = () => {
                   <TableCell align="left">{service.id}</TableCell>
                   <TableCell align="left">{service.service.name}</TableCell>
                   <TableCell align="left">{service.name}</TableCell>
-                  <TableCell align="left">{service.price}</TableCell>
+                  <TableCell align="left">{service.price.toLocaleString()} VNĐ </TableCell>
                   <TableCell align="left">
                     {service.status ? "ON" : "OFF"}
                   </TableCell>

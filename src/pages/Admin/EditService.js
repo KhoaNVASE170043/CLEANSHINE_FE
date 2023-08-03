@@ -98,9 +98,7 @@ const EditService = () => {
   ];
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb" separator="›" className="mb-3">
-        <Typography color="text.primary">Dịch vụ</Typography>
-      </Breadcrumbs>
+      <Typography variant="h5" sx={{color: "#397F77", textAlign: "center", fontFamily: "Work Sans", fontWeight: "bold"}}>DỊCH VỤ</Typography>
       <AddServiceForm />
       <Paper
         className="container"

@@ -83,9 +83,7 @@ const OrderService = () => {
   ];
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb" separator="›" className="mb-3">
-        <Typography color="text.primary">Đơn hàng</Typography>
-      </Breadcrumbs>
+      <Typography variant="h5" sx={{color: "#397F77", textAlign: "center", fontFamily: "Work Sans", fontWeight: "bold"}}>ĐƠN HÀNG</Typography>
       <Paper
         className="container"
         sx={{
@@ -93,6 +91,7 @@ const OrderService = () => {
           overflow: "hidden",
           justifyContent: "center",
           display: "flex-end",
+          marginTop: "3%"
         }}
       >
         <Table>

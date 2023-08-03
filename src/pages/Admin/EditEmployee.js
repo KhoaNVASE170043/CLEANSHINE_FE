@@ -72,9 +72,7 @@ const EditEmployee = () => {
   ];
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb" separator="›" className="mb-3">
-        <Typography color="text.primary">Nhân viên</Typography>
-      </Breadcrumbs>
+      <Typography variant="h5" sx={{color: "#397F77", textAlign: "center", fontFamily: "Work Sans", fontWeight: "bold"}}>NHÂN VIÊN</Typography>
       <div className="row">
         <div className="col-12">
           <img
