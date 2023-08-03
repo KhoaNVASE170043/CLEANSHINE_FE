@@ -82,9 +82,7 @@ const EditCustomer = () => {
   };
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb" separator="›" className="mb-3">
-        <Typography color="text.primary">Khách hàng</Typography>
-      </Breadcrumbs>
+      <Typography variant="h5" sx={{color: "#397F77", textAlign: "center", fontFamily: "Work Sans", fontWeight: "bold"}}>KHÁCH HÀNG</Typography>
       <Box className="col-10">
         <FormControl sx={{ m: 1, minWidth: 130 }} size="small">
           <InputLabel id="demo-simple-select-label">Khu vực</InputLabel>

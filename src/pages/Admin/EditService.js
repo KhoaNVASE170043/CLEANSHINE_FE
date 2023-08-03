@@ -91,16 +91,24 @@ const EditService = () => {
   const column = [
     { id: "no", label: "STT", minWidth: 170 },
     { id: "name", label: "Công việc", minWidth: 170 },
-    { id: "detail", label: "Link icon", minWidth: 170 },
+    { id: "detail", label: "Ảnh", minWidth: 170 },
     { id: "type", label: "Trạng thái", minWidth: 170 },
     { id: "edit", label: "Chỉnh sửa", minWidth: 170 },
     { id: "unable", label: "Trạng thái", minWidth: 170 },
   ];
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb" separator="›" className="mb-3">
-        <Typography color="text.primary">Dịch vụ</Typography>
-      </Breadcrumbs>
+      <Typography
+        variant="h5"
+        sx={{
+          color: "#397F77",
+          textAlign: "center",
+          fontFamily: "Work Sans",
+          fontWeight: "bold",
+        }}
+      >
+        DỊCH VỤ
+      </Typography>
       <AddServiceForm />
       <Paper
         className="container"
@@ -133,9 +141,22 @@ const EditService = () => {
                 >
                   <TableCell align="left">{service.id}</TableCell>
                   <TableCell align="left">{service.name}</TableCell>
-                  <TableCell align="left" sx={{maxWidth: "18vw", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>
-                    <a href={service.linkIcon} target="_blank">{service.linkIcon}</a>
+                  <TableCell
+                    align="left"
+                    sx={{
+                      maxWidth: "18vw",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    <img
+                      src={service.linkIcon}
+                      alt="Service Icon"
+                      style={{ maxWidth: "20%", height: "auto" }}
+                    />
                   </TableCell>
+
                   <TableCell align="left">
                     {service.status ? "ON" : "OFF"}
                   </TableCell>

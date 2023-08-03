@@ -178,8 +178,7 @@ const ServiceDetail = () => {
                 class="form-control"
                 placeholder="Nếu bạn có ghi chú, hãy ghi lại để chúng tôi biết nhé ..."
                 onChange={handleNoteChange}
-                maxLength={100}
-                rows={3}
+                rows={4}
                 id="floatingTextarea"
               />
             </div>

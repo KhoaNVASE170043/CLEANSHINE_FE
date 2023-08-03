@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { PieChart, Pie, Sector, ResponsiveContainer, Cell, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Sector,
+  ResponsiveContainer,
+  Cell,
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
 import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -165,11 +179,12 @@ const AdminHome = () => {
     console.log("split: ", serviceName);
     let formattedService = "";
     for (let i = 0; i < serviceName.length; i++) {
-      formattedService = formattedService + serviceName[i].split("")[0].toUpperCase();
+      formattedService =
+        formattedService + serviceName[i].split("")[0].toUpperCase();
     }
-    console.log("formatted: ", formattedService)
+    console.log("formatted: ", formattedService);
     return formattedService;
-  }
+  };
 
   return (
     <>
@@ -179,11 +194,11 @@ const AdminHome = () => {
             display: "flex",
             width: "95%",
             justifyContent: "space-between",
-            padding: "0 2vw 0 0"
+            padding: "0 2vw 0 0",
           }}
         >
-          {
-            amount && amount.map((item) => {
+          {amount &&
+            amount.map((item) => {
               return (
                 <Paper
                   style={{
@@ -191,7 +206,8 @@ const AdminHome = () => {
                     width: "13vw",
                     flexDirection: "column",
                     justifyContent: "center",
-                    padding: "1vh 2vw 0 2vw",
+                    alignItems: "center",
+                    padding: "20px",
                   }}
                   key={Math.random()}
                 >
@@ -199,30 +215,31 @@ const AdminHome = () => {
                     sx={{
                       fontSize: "17px",
                       opacity: "70%",
-                      padding: "0"
+                      padding: "0",
                     }}
-                  >{item.category}</Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "50px",
-                    }}
-                  >{item.amount}</Typography>
+                  >
+                    {item.category}
+                  </Typography>
+                  <Typography sx={{ fontSize: "20px" }}>
+                    {item.category === "Thu nhập"
+                      ? item.amount.toLocaleString() + " VNĐ"
+                      : item.amount}
+                  </Typography>
                 </Paper>
               );
-            })
-          }
+            })}
         </div>
       </div>
       <div
         className="container d-flex mt-5"
         style={{ height: "60vh", justifyContent: "space-between" }}
       >
-        <div className="col-md-6" >
+        <div className="col-md-6">
           <div
             style={{
               width: "100%",
               display: "flex",
-              justifyContent: "space-around"
+              justifyContent: "space-around",
             }}
           >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -231,7 +248,7 @@ const AdminHome = () => {
                 format="DD/MM/YYYY"
                 value={dayStart.$d}
                 onChange={(date) => setDayStart(date)}
-                sx={{ marginRight: 7, }}
+                sx={{ marginRight: 7 }}
               />
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -244,8 +261,8 @@ const AdminHome = () => {
               />
             </LocalizationProvider>
           </div>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={400} height={400}>
+          <ResponsiveContainer width="100%" height="100%" style={{ boxShadow: "none" }}>
+            <PieChart width={400} height={400} sx={{border: "none"}} >
               <Pie
                 activeIndex={activeIndex}
                 activeShape={renderActiveShape}
@@ -257,9 +274,13 @@ const AdminHome = () => {
                 dataKey="amount"
                 onMouseEnter={onPieEnter}
               >
-                {data && data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
+                {data &&
+                  data.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
               </Pie>
             </PieChart>
           </ResponsiveContainer>
@@ -271,10 +292,10 @@ const AdminHome = () => {
             height: "110%",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
           }}
         >
-          <ResponsiveContainer width="80%" height="45%">
+          <ResponsiveContainer width="80%" height="45%" style={{ border: "none" }}>
             <BarChart
               width={500}
               height={300}
@@ -291,9 +312,13 @@ const AdminHome = () => {
               <YAxis />
               <Tooltip />
               <Bar dataKey="amount" barSize={35}>
-                {data && data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
+                {data &&
+                  data.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
@@ -313,7 +338,12 @@ const AdminHome = () => {
               <XAxis dataKey="category" padding={{ left: 25}} tickFormatter={serviceShortener} />
               <YAxis />
               <Tooltip />
-              <Line type="monotone" dataKey="amount" stroke="#2B82B4" activeDot={{ r: 8 }} />
+              <Line
+                type="monotone"
+                dataKey="amount"
+                stroke="#2B82B4"
+                activeDot={{ r: 8 }}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
