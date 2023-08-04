@@ -165,13 +165,14 @@ const AdminHome = () => {
         // throw new Error("error");
       } else {
         const fetchedData = await res.json();
+        console.log(fetchedData);
         let tmp = [];
         for (let i = 5; i < fetchedData.length; i++) {
           tmp.push(fetchedData[i]);
         }
         setData(tmp);
         tmp = [];
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 5; i++) {
           tmp.push(fetchedData[i]);
         }
         setAmount(tmp);
